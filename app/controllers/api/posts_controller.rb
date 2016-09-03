@@ -5,8 +5,12 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    Post.create! secure_params
-    render :status => :created
+    post = Post.new secure_params
+    if post.save
+      render :status => :created, :json => post
+    else
+      render :status => :unprocessable_entity, :json => post.errors
+    end
   end
 
   def show
@@ -14,8 +18,13 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    Post.update params[:id], secure_params
-    render :status => :ok
+    post = Post.find params[:id]
+    post.update_attributes secure_params
+    if post.save
+      render :json => post
+    else
+      render :status => :unprocessable_entity, :json => post.errors
+    end
   end
 
   def destroy
