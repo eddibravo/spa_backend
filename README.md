@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/eddibravo/spa_backend.svg?branch=lesson_5)](https://travis-ci.org/eddibravo/spa_backend)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
