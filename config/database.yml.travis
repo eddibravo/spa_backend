@@ -1,5 +1,5 @@
 test:
   adapter: postgresql
   encoding: unicode
-  database: spa_backend_test
+  database: travis_ci_test
   pool: 5
