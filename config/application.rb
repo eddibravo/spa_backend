@@ -28,7 +28,21 @@ module SpaBackend
     config.api_only = true
 
     config.generators do |g|
-      g.factory_girl true
+      g.test_framework :rspec,
+                       :fixtures => true,
+                       :view_specs => false,
+                       :helper_specs => false,
+                       :routing_specs => false,
+                       :controller_specs => false,
+                       :request_specs => true
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+    end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins /\Alocalhost:4000\z/
+        resource /\Alocalhost:4000\z/, :headers => :any, :methods => [:get, :post, :delete, :put, :patch, :options]
+      end
     end
   end
 end
