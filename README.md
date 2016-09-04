@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/eddibravo/spa_backend.svg?branch=master)](https://travis-ci.org/eddibravo/spa_backend)
+[![Build Status](https://travis-ci.org/eddibravo/spa_backend.svg?branch=lesson_5)](https://travis-ci.org/eddibravo/spa_backend)
 
 # README
 
