@@ -16,4 +16,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-spa_test.pem
+config/provision/keys/spa_test.pem
+
+config/provision/keys/*
+config/provision/configs/settings.yml

@@ -1,0 +1,2 @@
+production:
+  secret_key_base: b24e81d77d1a057d4ed28fd9ad9a203cb8fcf08f3ce18bb84d0648be932e3fb7267a8eb008fa4a3b1024f01ed3d2bf1fbceaba6b3a3e3ce9c4c0a6d417d0d7e1
