@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: spa_backend_production
-  username: spa_backend
+  database: spa_production
+  username: postgres
   password: <%= ENV['SPA_BACKEND_DATABASE_PASSWORD'] %>
