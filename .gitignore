@@ -16,7 +16,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-config/provision/keys/spa_test.pem
 
-config/provision/keys/*
-config/provision/configs/settings.yml
+# Ignore application configuration
+.env.production
