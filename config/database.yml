@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: spa_production
-  username: postgres
+  username: ubuntu
   password: <%= ENV['SPA_BACKEND_DATABASE_PASSWORD'] %>

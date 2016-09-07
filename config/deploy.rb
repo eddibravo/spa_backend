@@ -22,9 +22,9 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.3.10spa'
+set :rvm_ruby_version, '2.3.1@spa'
 
-set :linked_files,  %w{config/database.yml config/settings.yml}
+# set :linked_files,  %w{config/database.yml}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public}
 
 namespace :deploy do
