@@ -24,7 +24,7 @@ set :puma_init_active_record, true
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.1@spa'
 
-set :linked_files,  %w{config/database.yml config/secrets.yml}
+# set :linked_files,  %w{config/database.yml config/secrets.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public}
 
 namespace :deploy do
@@ -55,7 +55,6 @@ namespace :deploy do
   end
 
   # before :starting,     :check_revision
-  # after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
