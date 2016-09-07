@@ -4,13 +4,13 @@ lock '3.6.1'
 set :application, 'spa'
 set :repo_url, 'git://github.com/eddibravo/spa_backend.git'
 set :user, 'ubuntu'
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :scm,             :git
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/applications/#{fetch(:application)}"
+set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -21,7 +21,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
-# set :linked_files,  %w{config/database.yml config/settings.yml}
+set :linked_files,  %w{config/database.yml config/settings.yml}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public}
 
 # Ruby свистелки
