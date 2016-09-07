@@ -37,7 +37,7 @@ group :development do
 
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano3-puma'
 end
 
