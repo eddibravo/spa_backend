@@ -7,7 +7,7 @@ RSpec.describe 'Posts api', type: :request do
   describe 'GET #index' do
     before { get '/api/posts' }
     it{ expect(response).to have_http_status :success }
-    it{ expect(json['data'].length).to eq 5 }
+    it{ expect(json.length).to eq 5 }
   end
 
   describe 'GET #show' do
