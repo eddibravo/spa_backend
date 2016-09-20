@@ -18,7 +18,7 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    post = current_user.find params[:id]
+    post = current_user.posts.find params[:id]
     post.update_attributes secure_params
     if post.save
       render :json => post
@@ -30,7 +30,7 @@ class Api::PostsController < ApplicationController
   def destroy
     post = current_user.posts.find params[:id]
     post.destroy
-    render :status => :ok
+    render :status => 204
   end
 
 
