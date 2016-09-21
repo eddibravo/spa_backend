@@ -25,10 +25,12 @@ gem 'carrierwave', :github => 'carrierwaveuploader/carrierwave'
 gem 'carrierwave-bombshelter' # защита от pixel flood attack
 gem 'mini_magick'
 
+gem 'faker'
+gem 'factory_girl_rails'
+
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'faker'
-  gem 'factory_girl_rails'
+
   gem 'guard-rspec'
 end
 
