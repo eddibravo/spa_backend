@@ -1,11 +1,11 @@
 class Api::PostsController < ApplicationController
-
+  before_action :authenticate_user, :except => [:index, :show]
   def index
     render :json => Post.order(:id => :asc)
   end
 
   def create
-    post = Post.new secure_params
+    post = current_user.posts.new secure_params
     if post.save
       render :status => :created, :json => post
     else
@@ -18,7 +18,7 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find params[:id]
+    post = current_user.posts.find params[:id]
     post.update_attributes secure_params
     if post.save
       render :json => post
@@ -28,8 +28,9 @@ class Api::PostsController < ApplicationController
   end
 
   def destroy
-    Post.destroy params[:id]
-    render :status => :ok
+    post = current_user.posts.find params[:id]
+    post.destroy
+    render :status => 204
   end
 
 
