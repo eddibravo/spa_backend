@@ -15,7 +15,7 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, :type => :request
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  #config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction

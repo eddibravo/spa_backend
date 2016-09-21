@@ -6,6 +6,15 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.2)
 
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 5367a636053b85bd639f2d1ee6ab25ef8305aeaf
+  specs:
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,6 +60,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
     api-pagination (4.4.0)
@@ -75,6 +85,10 @@ GEM
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
+    carrierwave-bombshelter (0.2.2)
+      activesupport (>= 3.2.0)
+      carrierwave
+      fastimage
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     database_cleaner (1.5.3)
@@ -90,6 +104,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.6.6)
       i18n (~> 0.5)
+    fastimage (2.0.0)
+      addressable (~> 2)
     ffi (1.9.14)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -133,6 +149,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     nenv (0.3.0)
@@ -247,6 +264,8 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm!
   capistrano3-puma
+  carrierwave!
+  carrierwave-bombshelter
   database_cleaner
   debase
   factory_girl_rails
@@ -255,6 +274,7 @@ DEPENDENCIES
   knock
   listen (~> 3.0.5)
   meta_request
+  mini_magick
   pg (~> 0.18)
   pg_search
   puma (~> 3.0)

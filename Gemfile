@@ -21,6 +21,10 @@ gem 'will_paginate'
 # gem 'kaminari'
 gem 'api-pagination' # пагинацию будем передавать в заголовках аля X-total X-page и тд
 gem 'pg_search'
+gem 'carrierwave', :github => 'carrierwaveuploader/carrierwave'
+gem 'carrierwave-bombshelter' # защита от pixel flood attack
+gem 'mini_magick'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker'
