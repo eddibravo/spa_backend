@@ -1,7 +1,16 @@
 class Api::PostsController < ApplicationController
-  before_action :authenticate_user, :except => [:index, :show]
+  before_action :authenticate_user, :except => [:index, :show, :search]
+
   def index
-    render :json => Post.order(:id => :asc)
+    posts = Post.paginate(page_params).includes(:user).order_by(params[:order], params[:direction])
+    render :json => posts
+  end
+
+  def search
+    keyword = params[:q] || nil
+    search_result = Post.paginate(page_params).search_title_like(keyword).includes(:user)
+    logger.info search_result.inspect
+    paginate :json => search_result
   end
 
   def create
@@ -37,5 +46,12 @@ class Api::PostsController < ApplicationController
   private
   def secure_params
     params.require(:post).permit(:username, :title, :body)
+  end
+
+  def page_params
+    page = params[:page].respond_to?(:to_i) && params[:page].to_i > 0 ? params[:page].to_i : 1
+    per_page = params[:per_page].respond_to?(:to_i) && params[:per_page].to_i > 0 ? params[:per_page].to_i : 30
+
+    {:page => page, :per_page => per_page}
   end
 end

@@ -1,16 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts api', type: :request do
-  let(:post_factory) { FactoryGirl.create :post }
-  before{ FactoryGirl.create_list(:post, 5) }
+   before{ FactoryGirl.create_list(:post, 100) }
 
   describe 'GET #index' do
     before { get '/api/posts' }
     it{ expect(response).to have_http_status :success }
-    it{ expect(json.length).to eq 5 }
+    it 'ожидаем 30 записей на страницу' do
+      expect(json.length).to eq 30
+    end
+
+    context 'сортировка' do
+      it 'по убыванию' do
+        get '/api/posts', {:order => :created_at, :direction=> :desc}
+        expect(json[0]['id']).to eq Post.order(:created_at => :desc).first.id
+      end
+
+      it 'по возрастанию' do
+        get '/api/posts', {:order => :created_at, :direction => :asc}
+        expect(json[0]['id']).to eq Post.order(:created_at => :asc).first.id
+      end
+    end
   end
 
   describe 'GET #show' do
+    let(:post_factory) { FactoryGirl.create :post }
     before { get "/api/posts/#{post_factory.id}" }
     it{ expect(response).to have_http_status :success }
   end
@@ -27,6 +41,7 @@ RSpec.describe 'Posts api', type: :request do
   end
 
   describe 'PUT #update' do
+    let(:post_factory) { FactoryGirl.create :post }
     let(:auth_header) { jwt_auth_header_for post_factory.user }
       before do
         post_factory.title = 'Updated title'
@@ -46,6 +61,16 @@ RSpec.describe 'Posts api', type: :request do
     end
 
     it{ expect{ post '/api/posts', { :post => new_post.attributes }, auth_header }.to change(Post, :count).by(1) }
+  end
+
+  describe 'GET #search' do
+    let!(:search_post) { FactoryGirl.create(:post, :title => 'popka durak') }
+
+    before { get '/api/posts/search', :q => 'popka' }
+
+    it { expect(response).to have_http_status :success }
+    it { expect(json[0]['id']).to eq search_post.id }
+
   end
 
 end
